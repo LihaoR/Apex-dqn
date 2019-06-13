@@ -116,7 +116,7 @@ class Learner():
                 
                 l,abs_errors,_ = self.sess.run([self.loss, self.u, self.apply_grads],feed_dict=feed_dict)
                 #print abs_errors
-                abs_errors = np.mean(abs_errors, axis=1)
+                abs_errors = np.mean(abs_errors, axis=1) + 1e-6
                 
                 self.replaymemory.update_priorities(tree_idx,abs_errors)
             """
