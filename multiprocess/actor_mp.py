@@ -67,7 +67,7 @@ class Actor():
                     s1 = s
                 
                 #if self.queue.full():
-                #    print 'fuck1', self.name
+                #    print self.name
                 if total_steps % 4 == 0:
                     self.queue.put((s,a,r,s1,d))
                 episode_reward += r
