@@ -51,7 +51,7 @@ class Learner():
         self.env = env
         while True:
             if self.queue.empty():
-                pass #
+                pass 
             else:
                 while not self.queue.empty():
                     t_error = self.queue.get()
@@ -61,7 +61,7 @@ class Learner():
             if self.param_queue.empty():
                 params = self.sess.run(self.local_vars)
                 self.param_queue.put(params)
-            #print 'yoho'
+            
             if step >= 10000:
                 train1 = True
                 step = 0
@@ -77,7 +77,6 @@ class Learner():
                 observations_next = episode_buffer[:,3]
                 dones             = episode_buffer[:,4]
                 Q_target = self.sess.run(self.Q, feed_dict={self.learner_net.inputs:np.vstack(observations_next)})
-                
                 
                 actions_ = np.argmax(Q_target, axis=1)
                 
@@ -140,7 +139,7 @@ class Learner():
                     s1 = s
                 
                 #if self.queue.full():
-                #    print 'fuck1', self.name
+                #    print self.name
                 self.queue.put((s,a,r,s1,d))
                 episode_reward += r
                 s = s1
