@@ -118,35 +118,4 @@ class Learner():
                 abs_errors = np.mean(abs_errors, axis=1) + 1e-6
                 
                 self.replaymemory.update_priorities(tree_idx,abs_errors)
-            """
-            episode_reward = 0
-            d = False
-            s = self.env.reset()
-            s = process_frame(s)
 
-            while not d:
-                #self.env.render()
-                if random.random() > 0.05:
-                    a_dist = self.sess.run(self.learner_net.Q, feed_dict={self.learner_net.inputs:[s]})[0]
-                    a = np.argmax(a_dist)
-                else:
-                    a = random.randint(0, 5)
-                    
-                s1, r, d, _ = self.env.step(a)
-                if d != True:
-                    s1 = process_frame(s1)
-                else:
-                    s1 = s
-                
-                #if self.queue.full():
-                #    print self.name
-                self.queue.put((s,a,r,s1,d))
-                episode_reward += r
-                s = s1
-            epi_q.append(episode_reward)
-            if step % 10 == 0:
-                print 'learner', np.mean(epi_q[-10:])
-            
-            if len(epi_q) > 20:
-                epi_q.pop(0)
-            """
